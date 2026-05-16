@@ -685,11 +685,14 @@ nav.s .nav-r a{height:60px;}
 .g-pic:hover img{transform:scale(1.06);filter:saturate(1)brightness(1);}
 .g-lbl{
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(14,15,13,.85) 0%,transparent 55%);
-  opacity:0;transition:opacity .35s;
+  background:linear-gradient(to top,rgba(14,15,13,.92) 0%,transparent 65%);
+  opacity:1;
   display:flex;align-items:flex-end;padding:18px 20px;
+  transition:all .4s ease;
 }
-.g-pic:hover .g-lbl{opacity:1;}
+.g-pic:hover .g-lbl{
+  background:linear-gradient(to top,rgba(14,15,13,.95) 0%,transparent 55%);
+}
 .g-lbl span{
   font-size:13px;font-weight:500;color:var(--ink);
   letter-spacing:.5px;
