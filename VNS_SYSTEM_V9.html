@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VNS Construction — Engineering Excellence Since 1999</title>
+<meta name="description" content="VNS Construction, Erode — 20+ years of structural engineering, architectural design and premium builds across Tamil Nadu."/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --bg:        #0E0F0D;
+  --bg-2:      #131410;
+  --bg-3:      #181A14;
+  --copper:    #ffa600;
+  --copper-lt: #D9915A;
+  --copper-dk: #9A5522;
+  --sage:      #8A9B7C;
+  --sage-lt:   #B0BFA4;
+  --ink:       #F0EDE6;
+  --ink-2:     #C8C3BA;
+  --ink-3:     #7A7670;
+  --line:      rgba(139, 132, 126, 0.18);
+  --line-sub:  rgba(240,237,230,0.07);
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Outfit',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--copper);}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+
+/* ═══════════════════════════════════════════
+   NOISE OVERLAY (grain texture)
+═══════════════════════════════════════════ */
+body::before{
+  content:'';
+  position:fixed;inset:0;pointer-events:none;z-index:900;
+  opacity:0.028;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:160px 160px;
+}
+
+/* ═══════════════════════════════════════════
+   PROGRESS BAR
+═══════════════════════════════════════════ */
+#prog{
+  position:fixed;top:0;left:0;height:2px;width:0;
+  background:linear-gradient(90deg,var(--copper-dk),var(--copper-lt));
+  z-index:9999;transition:width .1s linear;
+}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:800;
+  height:72px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;
+  background:rgba(14,15,13,0);
+  transition:background .4s,height .4s,border-color .4s;
+  border-bottom:1px solid transparent;
+}
+nav.s{
+  height:60px;
+  background:rgba(14,15,13,0.93);
+  backdrop-filter:blur(20px);
+  border-bottom-color:var(--line);
+}
+
+/* Logo */
+.logo{display:flex;align-items:center;gap:13px;}
+.logo-sq{
+  width:38px;height:38px;
+  position:relative;
+  flex-shrink:0;
+}
+.logo-sq svg{position:absolute;inset:0;}
+.logo-text b{
+  display:block;
+  font-family:'Outfit',sans-serif;
+  font-size:15px;font-weight:600;
+  letter-spacing:3.5px;text-transform:uppercase;
+  color:var(--ink);
+}
+.logo-text small{
+  display:block;
+  font-size:9px;font-weight:300;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--copper);margin-top:2px;
+}
+
+/* Nav links */
+.nav-r{display:flex;align-items:center;gap:0;}
+.nav-r a{
+  font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--ink-3);
+  padding:0 22px;height:72px;
+  display:flex;align-items:center;
+  border-left:1px solid transparent;
+  transition:color .3s,border-color .3s;
+}
+nav.s .nav-r a{height:60px;}
+.nav-r a:hover{color:var(--copper-lt);border-left-color:var(--line);}
+.nav-r .cta{
+  margin-left:14px;
+  background:var(--copper);color:var(--bg) !important;
+  border-left:none !important;
+  padding:0 28px;
+  font-weight:600;
+  transition:background .3s !important;
+}
+.nav-r .cta:hover{background:var(--copper-lt) !important;}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Left panel */
+.hero-l{
+  position:relative;z-index:2;
+  padding:160px 6vw 100px 7vw;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  background:var(--bg);
+}
+.hero-l::after{
+  content:'';
+  position:absolute;top:0;right:-1px;bottom:0;width:1px;
+  background:linear-gradient(180deg,transparent 0%,var(--copper) 40%,transparent 100%);
+  z-index:3;
+}
+
+.h-kicker{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;
+  color:var(--copper);
+  margin-bottom:36px;
+}
+.h-kicker span{
+  display:inline-block;width:32px;height:1px;background:var(--copper);
+}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(58px,7vw,100px);
+  font-weight:400;line-height:.95;
+  letter-spacing:-2px;
+  margin-bottom:32px;
+}
+.hero h1 .ital{font-style:italic;color:var(--copper-lt);}
+.hero h1 .sage{color:var(--sage-lt);}
+
+.hero-sub{
+  font-size:16px;line-height:1.85;color:var(--ink-3);
+  max-width:420px;margin-bottom:52px;
+}
+
+.hero-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+  transition:all .3s;
+}
+.btn-solid{
+  background:var(--copper);color:var(--bg);
+  padding:15px 36px;
+}
+.btn-solid:hover{background:var(--copper-lt);}
+.btn-ghost{
+  color:var(--ink-2);
+  border-bottom:1px solid rgba(240,237,230,0.25);
+  padding-bottom:3px;
+}
+.btn-ghost:hover{color:var(--copper-lt);border-color:var(--copper);}
+
+/* Hero stat strip */
+.hero-strip{
+  display:flex;gap:0;
+  border-top:1px solid var(--line-sub);
+  margin-top:60px;padding-top:36px;
+}
+.hs{flex:1;padding-right:20px;}
+.hs+.hs{border-left:1px solid var(--line-sub);padding-left:20px;}
+.hs-n{
+  font-family:'Playfair Display',serif;
+  font-size:44px;font-weight:400;
+  color:var(--copper-lt);line-height:1;display:block;
+}
+.hs-l{
+  display:block;font-size:10px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--ink-3);margin-top:6px;
+}
+
+/* Right panel — photo */
+.hero-r{
+  position:relative;overflow:hidden;
+}
+.hero-r img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(.75)brightness(.85);
+  transform:scale(1.04);
+  transition:transform 8s ease,filter 1s;
+}
+.hero:hover .hero-r img{transform:scale(1);filter:saturate(.9)brightness(.9);}
+
+/* diagonal clip on left edge of photo */
+.hero-r::before{
+  content:'';
+  position:absolute;top:0;left:0;bottom:0;width:80px;
+  background:linear-gradient(to right,var(--bg) 0%,transparent 100%);
+  z-index:1;
+}
+/* tinted overlay */
+.hero-r::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(196,116,58,0.18) 0%,transparent 50%,rgba(14,15,13,0.5) 100%);
+  z-index:1;
+}
+
+/* Floating project badge */
+.hero-badge{
+  position:absolute;bottom:48px;right:48px;z-index:4;
+  background:rgba(14,15,13,0.88);
+  backdrop-filter:blur(12px);
+  border:1px solid var(--line);
+  padding:22px 28px;
+  text-align:right;
+}
+.hero-badge b{
+  font-family:'Playfair Display',serif;
+  font-size:38px;font-weight:400;color:var(--copper-lt);
+  line-height:1;display:block;
+}
+.hero-badge span{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--ink-3);margin-top:4px;display:block;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLLING TICKER
+═══════════════════════════════════════════ */
+.ticker{
+  height:48px;overflow:hidden;
+  display:flex;align-items:center;
+  background:var(--copper);
+  position:relative;
+}
+.ticker-track{
+  display:flex;white-space:nowrap;
+  animation:tick 22s linear infinite;
+}
+.ticker-item{
+  display:flex;align-items:center;gap:14px;
+  padding:0 32px;
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--bg);
+}
+.ticker-sep{width:5px;height:5px;background:var(--bg);opacity:.4;transform:rotate(45deg);flex-shrink:0;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════ */
+.about{
+  padding:120px 7vw;
+  background:var(--bg-2);
+  position:relative;overflow:hidden;
+}
+.about::before{
+  content:'20+';
+  position:absolute;right:-2vw;top:50%;transform:translateY(-50%);
+  font-family:'Playfair Display',serif;
+  font-size:clamp(180px,22vw,320px);
+  font-weight:700;
+  color:rgba(196,116,58,0.04);
+  line-height:1;pointer-events:none;
+  white-space:nowrap;
+}
+
+.about-inner{
+  display:grid;
+  grid-template-columns:1fr 1.15fr;
+  gap:80px;align-items:start;
+  max-width:1300px;
+}
+
+.about-vis{position:relative;}
+.about-main-img{
+  width:100%;height:520px;object-fit:cover;
+  filter:saturate(.8);
+  transition:filter .5s;
+}
+.about-vis:hover .about-main-img{filter:saturate(1);}
+
+.about-accent-img{
+  position:absolute;bottom:-40px;right:-40px;
+  width:46%;height:220px;object-fit:cover;
+  border:5px solid var(--bg-2);
+  filter:saturate(.7);
+  transition:filter .5s;
+  z-index:2;
+}
+.about-vis:hover .about-accent-img{filter:saturate(1);}
+
+.about-year-tag{
+  position:absolute;top:28px;left:-18px;z-index:3;
+  background:var(--copper);
+  padding:10px 0;
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  font-size:9px;font-weight:700;letter-spacing:4px;
+  text-transform:uppercase;color:var(--bg);
+  padding:14px 10px;
+}
+
+.about-copy{padding-top:10px;}
+.sec-kicker{
+  display:flex;align-items:center;gap:10px;
+  font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;
+  color:var(--copper);margin-bottom:20px;
+}
+.sec-kicker::before{content:'';width:26px;height:1.5px;background:var(--copper);}
+
+.sec-h{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,4vw,58px);
+  font-weight:400;line-height:1.05;
+  letter-spacing:-.5px;
+  margin-bottom:28px;
+}
+.sec-h em{font-style:italic;color:var(--copper-lt);}
+.sec-h .sage{color:var(--sage-lt);}
+
+.about-copy p{
+  font-size:15px;line-height:1.95;
+  color:var(--ink-3);margin-bottom:18px;
+}
+
+.pillars{
+  margin-top:44px;
+  display:flex;flex-direction:column;gap:0;
+  border-top:1px solid var(--line-sub);
+}
+.pillar{
+  display:flex;align-items:flex-start;gap:22px;
+  padding:20px 0;
+  border-bottom:1px solid var(--line-sub);
+  transition:padding-left .3s;
+}
+.pillar:hover{padding-left:8px;}
+.pillar-icon{
+  width:34px;height:34px;min-width:34px;
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--copper);font-size:14px;margin-top:2px;
+  transition:background .3s,border-color .3s;
+}
+.pillar:hover .pillar-icon{background:var(--copper);color:var(--bg);border-color:var(--copper);}
+.pillar-text h4{
+  font-size:13px;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--ink);margin-bottom:4px;
+}
+.pillar-text p{font-size:13px;color:var(--ink-3);line-height:1.5;}
+
+/* ═══════════════════════════════════════════
+   CAPABILITIES
+═══════════════════════════════════════════ */
+.caps{
+  padding:120px 7vw;
+  background:var(--bg);
+  position:relative;
+}
+.caps::before{
+  content:'';
+  position:absolute;top:-2px;left:0;right:0;height:60px;
+  background:var(--bg);
+  clip-path:polygon(0 0,100% 0,100% 100%,0 0);
+}
+
+.caps-head{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:40px;margin-bottom:72px;align-items:end;
+}
+.caps-head p{
+  font-size:15px;line-height:1.85;color:var(--ink-3);
+  padding-bottom:4px;
+}
+
+.svc-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+}
+.svc{
+  background:var(--bg-3);
+  padding:48px 36px 40px;
+  position:relative;overflow:hidden;
+  transition:background .35s;
+}
+.svc::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--copper),transparent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .45s cubic-bezier(.16,1,.3,1);
+}
+.svc:hover{background:var(--bg-2);}
+.svc:hover::after{transform:scaleX(1);}
+
+.svc-num{
+  font-family:'Playfair Display',serif;
+  font-size:64px;font-weight:400;
+  color:rgba(196,116,58,0.08);
+  line-height:1;margin-bottom:28px;
+  transition:color .3s;
+}
+.svc:hover .svc-num{color:rgba(196,116,58,0.14);}
+.svc h3{
+  font-size:13px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:var(--ink);
+  margin-bottom:14px;
+}
+.svc p{font-size:13px;line-height:1.75;color:var(--ink-3);}
+.svc-arr{
+  display:inline-flex;align-items:center;
+  margin-top:26px;
+  font-size:11px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:var(--copper);
+  gap:8px;opacity:0;transform:translateX(-8px);
+  transition:opacity .3s,transform .3s;
+}
+.svc:hover .svc-arr{opacity:1;transform:translateX(0);}
+
+/* ═══════════════════════════════════════════
+   SECTORS
+═══════════════════════════════════════════ */
+.sectors{
+  background:var(--bg-3);
+  padding:100px 7vw;
+  position:relative;overflow:hidden;
+}
+.sectors-wrap{
+  display:grid;grid-template-columns:1fr 2fr;
+  gap:80px;align-items:center;
+}
+.sec-list{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0;
+  position:relative;
+}
+.sec-item{
+  display:flex;align-items:center;gap:16px;
+  padding:20px 16px 20px 0;
+  border-bottom:1px solid var(--line-sub);
+  transition:padding-left .3s;
+  cursor:default;
+}
+.sec-item:hover{padding-left:10px;}
+.sec-dot{
+  width:7px;height:7px;min-width:7px;
+  background:var(--copper);
+  clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+  transition:transform .3s;
+}
+.sec-item:hover .sec-dot{transform:rotate(45deg) scale(1.3);}
+.sec-item span{
+  font-size:15px;font-weight:400;
+  color:var(--ink-2);line-height:1.3;
+  transition:color .3s;
+}
+.sec-item:hover span{color:var(--ink);}
+
+/* ═══════════════════════════════════════════
+   PROJECTS — Enhanced with side details
+═══════════════════════════════════════════ */
+.projects{
+  padding:0;background:var(--bg);
+}
+
+.proj-block{
+  display:grid;
+  grid-template-columns:1fr 2.2fr;
+  min-height:560px;
+  border-top:1px solid var(--line-sub);
+}
+.proj-info{
+  padding:72px 56px;
+  background:var(--bg-2);
+  display:flex;flex-direction:column;justify-content:center;
+  border-right:1px solid var(--line-sub);
+}
+.proj-type{
+  font-size:10px;font-weight:600;letter-spacing:4px;
+  text-transform:uppercase;color:var(--copper);
+  margin-bottom:20px;
+}
+.proj-h{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(34px,3.5vw,52px);
+  font-weight:400;line-height:1.05;
+  color:var(--ink);margin-bottom:20px;
+}
+.proj-h em{font-style:italic;color:var(--sage-lt);}
+.proj-sub{font-size:14px;line-height:1.7;color:var(--ink-3);}
+.proj-count{
+  margin-top:auto;padding-top:40px;
+  font-family:'Playfair Display',serif;
+  font-size:72px;font-weight:400;
+  color:rgba(196,116,58,0.12);line-height:1;
+}
+
+/* Stack viewer with left details */
+.stack-area{
+  position:relative;
+  display:flex;
+  align-items:center;
+  background:var(--bg);
+  overflow:hidden;
+  padding:48px 6%;
+  gap:5%;
+}
+.stack-area::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(196,116,58,0.04) 0%,transparent 60%);
+}
+
+.stack-details{
+  flex:1;
+  max-width:280px;
+}
+.stack-details h4{
+  font-family:'Playfair Display',serif;
+  font-size:22px;
+  margin-bottom:8px;
+  color:var(--ink);
+}
+.stack-details .location{
+  font-size:13px;
+  color:var(--copper);
+  margin-bottom:16px;
+  letter-spacing:1px;
+}
+.stack-details p{
+  font-size:14px;
+  line-height:1.7;
+  color:var(--ink-3);
+  margin-bottom:20px;
+}
+.stack-meta{
+  display:flex;
+  gap:24px;
+  font-size:13px;
+}
+.stack-meta div span{
+  display:block;
+  font-size:11px;
+  color:var(--ink-3);
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+
+.stack-wrap{
+  flex:1.8;
+  position:relative;
+  width:100%;
+  max-width:580px;
+  height:360px;
+  perspective:1800px;
+}
+.s-card{
+  position:absolute;
+  width:88%;height:100%;
+  overflow:hidden;
+  transition:all .75s cubic-bezier(.16,1,.3,1);
+  cursor:pointer;
+}
+.s-card img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .5s ease,filter .5s;
+  filter:saturate(.6)brightness(.8);
+}
+.s-card.act img{filter:saturate(.95)brightness(.95);}
+.s-card.act{z-index:10;transform:translateX(0) scale(1);opacity:1;}
+.s-card.nxt{z-index:5;transform:translateX(9%) scale(0.94);opacity:.55;}
+.s-card.prv{z-index:1;transform:translateX(-130%) scale(0.88);opacity:0;}
+.s-card.hid{z-index:1;transform:translateX(25%) scale(0.88);opacity:.2;}
+
+.s-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:24px 28px;
+  background:linear-gradient(transparent,rgba(14,15,13,.88));
+  opacity:0;transition:opacity .4s;
+}
+.s-card.act .s-overlay{opacity:1;}
+.s-overlay h4{
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-weight:400;color:var(--ink);
+  margin-bottom:4px;
+}
+.s-overlay span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--copper);}
+
+/* Nav button */
+.stack-nav{
+  position:absolute;bottom:32px;right:32px;
+  display:flex;gap:2px;z-index:20;
+}
+.s-btn{
+  width:52px;height:52px;
+  background:var(--copper);color:var(--bg);
+  border:none;cursor:pointer;
+  font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .3s;font-family:inherit;
+}
+.s-btn:hover{background:var(--copper-lt);}
+.s-btn-prev{background:rgba(196,116,58,0.15);color:var(--copper);}
+.s-btn-prev:hover{background:rgba(196,116,58,0.3);}
+
+/* ═══════════════════════════════════════════
+   CHRONICLES (Gallery)
+═══════════════════════════════════════════ */
+.chron{
+  padding:120px 7vw;
+  background:var(--bg-2);
+}
+.chron-head{
+  display:flex;align-items:flex-end;
+  justify-content:space-between;
+  margin-bottom:52px;flex-wrap:wrap;gap:24px;
+}
+.tabs{display:flex;gap:2px;}
+.tab{
+  padding:10px 22px;
+  font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--ink-3);
+  background:none;border:1px solid var(--line-sub);
+  cursor:pointer;transition:all .25s;
+}
+.tab.on,.tab:hover{background:var(--copper);color:var(--bg);border-color:var(--copper);}
+
+.g-mosaic{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:210px;
+  gap:3px;
+}
+.g-pic{position:relative;overflow:hidden;background:var(--bg-3);}
+.g-pic:nth-child(1){grid-column:span 5;grid-row:span 2;}
+.g-pic:nth-child(2){grid-column:span 4;}
+.g-pic:nth-child(3){grid-column:span 3;}
+.g-pic:nth-child(4){grid-column:span 3;}
+.g-pic:nth-child(5){grid-column:span 4;}
+.g-pic:nth-child(6){grid-column:span 7;grid-row:span 1;}
+.g-pic:nth-child(7){grid-column:span 5;}
+
+.g-pic img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(.6)brightness(.8);
+  transition:transform .6s ease,filter .4s;
+}
+.g-pic:hover img{transform:scale(1.06);filter:saturate(1)brightness(1);}
+.g-lbl{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(14,15,13,.85) 0%,transparent 55%);
+  opacity:0;transition:opacity .35s;
+  display:flex;align-items:flex-end;padding:18px 20px;
+}
+.g-pic:hover .g-lbl{opacity:1;}
+.g-lbl span{
+  font-size:13px;font-weight:500;color:var(--ink);
+  letter-spacing:.5px;
+}
+
+/* ═══════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════ */
+.testi{
+  padding:100px 7vw;
+  background:var(--bg);
+  position:relative;overflow:hidden;
+}
+.testi::before{
+  content:'\201C';
+  position:absolute;left:5vw;top:40px;
+  font-family:'Playfair Display',serif;
+  font-size:300px;font-weight:700;line-height:1;
+  color:rgba(196,116,58,0.05);pointer-events:none;
+  z-index:0;
+}
+.testi-head{margin-bottom:60px;position:relative;z-index:1;}
+.testi-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:40px;position:relative;z-index:1;
+}
+.t-card{
+  padding:44px 40px;
+  background:var(--bg-2);
+  border-top:2px solid var(--copper);
+  position:relative;
+}
+.t-card blockquote{
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-style:italic;
+  line-height:1.75;color:var(--ink-2);
+  margin-bottom:32px;
+}
+.t-author{
+  font-size:11px;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:var(--copper);
+}
+
+/* ═══════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════ */
+.contact{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  border-top:1px solid var(--line);
+}
+.contact-l{
+  padding:100px 7vw 100px 7vw;
+  background:var(--bg-2);
+  display:flex;flex-direction:column;justify-content:center;
+}
+
+/* Enhanced Contact Typography */
+.contact-l .sec-kicker {
+  font-size: 11px;
+  letter-spacing: 4.5px;
+  margin-bottom: 12px;
+}
+
+.contact-l .sec-h {
+  font-size: clamp(42px, 5.5vw, 62px);
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
+
+.contact-l > p {
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--ink-2);
+  max-width: 380px;
+}
+
+.c-items{display:flex;flex-direction:column;gap:0;}
+.c-item{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:18px 0;
+  border-bottom:1px solid var(--line-sub);
+}
+.c-item:last-child{border-bottom:none;}
+.c-ico{
+  width:38px;height:38px;min-width:38px;
+  background:rgba(196,116,58,0.12);
+  border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--copper);
+  transition:background .3s;
+}
+.c-item:hover .c-ico{background:var(--copper);color:var(--bg);}
+.c-item label{
+  display:block;font-size:9px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--copper);margin-bottom:4px;
+}
+.c-item span{font-size:14px;color:var(--ink-3);}
+
+.contact-form{
+  padding:100px 7vw;
+  background:var(--bg-3);
+}
+
+/* Form Improvements */
+.contact-form h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.contact-form > p {
+  font-size: 14.5px;
+  color: var(--ink-3);
+  margin-bottom: 42px;
+}
+
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{margin-bottom:16px;}
+
+/* Better Form Fields */
+.fg label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 10px;
+}
+
+.fg input, 
+.fg textarea, 
+.fg select {
+  width: 100%;
+  background: var(--bg);
+  border: none;
+  border-bottom: 1.5px solid var(--line-sub);
+  color: var(--ink);
+  font-family: 'Outfit', sans-serif;
+  font-size: 15.5px;
+  font-weight: 300;
+  padding: 12px 0;
+  outline: none;
+  transition: border-color .4s ease;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.fg input:focus, 
+.fg textarea:focus, 
+.fg select:focus {
+  border-bottom-color: var(--copper);
+}
+
+.fg select option {
+  background: var(--bg-2);
+}
+
+.fg textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.btn-send {
+  width: 100%;
+  background: var(--copper);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  padding: 18px 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 3.2px;
+  text-transform: uppercase;
+  transition: all .3s ease;
+  margin-top: 12px;
+}
+
+.btn-send:hover {
+  background: var(--copper-lt);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 166, 0, 0.25);
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{
+  background:var(--bg);
+  border-top:1px solid var(--line-sub);
+  padding:64px 7vw 36px;
+}
+.footer-top{
+  display:grid;
+  grid-template-columns:1.8fr 1fr 1fr 1fr;
+  gap:56px;margin-bottom:56px;
+}
+.f-brand p{
+  font-size:13px;line-height:1.8;
+  color:var(--ink-3);
+  margin:18px 0 0;max-width:260px;
+}
+.f-col h4{
+  font-size:9px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--copper);
+  margin-bottom:20px;
+}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.f-col ul a{
+  font-size:13px;color:var(--ink-3);
+  transition:color .25s;
+}
+.f-col ul a:hover{color:var(--ink);}
+.footer-btm{
+  border-top:1px solid var(--line-sub);
+  padding-top:24px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+}
+.footer-btm p{font-size:11px;color:var(--ink-3);letter-spacing:1px;}
+.footer-btm span{color:var(--copper);}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+.rev{
+  opacity:0;transform:translateY(22px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.rev.in{opacity:1;transform:translateY(0);}
+.rev.d1{transition-delay:.1s;}
+.rev.d2{transition-delay:.2s;}
+.rev.d3{transition-delay:.3s;}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1024px){
+  .hero,.about-inner,.sectors-wrap,
+  .proj-block,.contact{grid-template-columns:1fr;}
+  .hero-r{height:420px;}
+  .about-accent-img{display:none;}
+  .about-year-tag{display:none;}
+  .caps-head{grid-template-columns:1fr;}
+  .svc-row{grid-template-columns:1fr 1fr;}
+  .g-mosaic{grid-template-columns:1fr 1fr;}
+  .g-pic{grid-column:span 1 !important;grid-row:span 1 !important;height:220px;}
+  .testi-row{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+  .proj-info{padding:48px 36px;}
+  .contact-l{padding:72px 6vw;}
+  .stack-area{flex-direction:column;gap:32px;}
+  .stack-details{max-width:100%;}
+}
+@media(max-width:640px){
+  .nav-r a:not(.cta){display:none;}
+  .svc-row,.sec-list{grid-template-columns:1fr;}
+  .f-row{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr;}
+  .testi-row{grid-template-columns:1fr;}
+  .hero-strip{flex-direction:column;gap:20px;}
+  .hs+.hs{border-left:none;padding-left:0;border-top:1px solid var(--line-sub);padding-top:20px;}
+  .tabs{flex-wrap:wrap;}
+  .hero h1{letter-spacing:-1px;}
+  .hero-badge{right:16px;bottom:16px;}
+  .hero-l{padding:140px 6vw 80px 6vw;}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">
+    <div class="logo-sq">
+      <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="36" height="36" stroke="#C4743A" stroke-width="1.2"/>
+        <rect x="5" y="5" width="28" height="28" stroke="rgba(196,116,58,0.25)" stroke-width=".8"/>
+        <line x1="1" y1="1" x2="9" y2="9" stroke="rgba(196,116,58,0.3)" stroke-width=".8"/>
+        <line x1="37" y1="1" x2="29" y2="9" stroke="rgba(196,116,58,0.3)" stroke-width=".8"/>
+        <text x="19" y="24" text-anchor="middle" font-family="Outfit" font-size="11" font-weight="700" fill="#C4743A" letter-spacing="1">VNS</text>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <b>Construction</b>
+      <small>Erode · Est. 1999</small>
+    </div>
+  </a>
+  <div class="nav-r">
+    <a href="#caps">Capabilities</a>
+    <a href="#chron">Gallery</a>
+    <a href="#proj">Projects</a>
+    <a href="#contact" class="cta">Enquire</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-l">
+    <div class="h-kicker"><span></span>South India's Engineering Partner</div>
+    <h1>
+      Structural<br>
+      <span class="ital">Excellence.</span><br>
+      <span class="sage">Built.</span>
+    </h1>
+    <p class="hero-sub">Precision engineering and architectural integrity — over 150 landmark projects delivered across Tamil Nadu in two decades of trusted practice.</p>
+    <div class="hero-actions">
+      <a href="#proj" class="btn btn-solid">View Our Work <span>→</span></a>
+      <a href="#contact" class="btn btn-ghost">Start a Project</a>
+    </div>
+    <div class="hero-strip">
+      <div class="hs"><span class="hs-n">27Y</span><span class="hs-l">Engineering Heritage</span></div>
+      <div class="hs"><span class="hs-n">150+</span><span class="hs-l">Projects Delivered</span></div>
+      <div class="hs"><span class="hs-n">3L</span><span class="hs-l">Sq.Ft Capacity</span></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <img src="https://www.vnsconstruction.in/assets/img/backgrounds/education_building.jpg" alt="VNS Construction — Flagship Project"/>
+    <div class="hero-badge">
+      <b>100%</b>
+      <span>On-Time Delivery</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="tt">
+    <div class="ticker-item"><div class="ticker-sep"></div>Residential Homes</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Educational Campuses</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Apartment Complexes</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Commercial Complexes</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Textile Industry</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Food Industry</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Interior Design</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Govt. Approvals</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Residential Homes</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Educational Campuses</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Apartment Complexes</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Commercial Complexes</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Textile Industry</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Food Industry</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Interior Design</div>
+    <div class="ticker-item"><div class="ticker-sep"></div>Govt. Approvals</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-vis rev">
+      <div class="about-year-tag">Est. 1999</div>
+      <img class="about-main-img" src="https://www.vnsconstruction.in/assets/img/portfolio/educational_building.jpg" alt="VNS Educational Project"/>
+      <img class="about-accent-img" src="https://www.vnsconstruction.in/assets/img/portfolio/apartment.jpg" alt="VNS Apartment Project"/>
+    </div>
+    <div class="about-copy rev d1">
+      <div class="sec-kicker">About VNS</div>
+      <h2 class="sec-h">Built on <em>Precision</em>,<br>Guided by <span class="sage">Trust</span></h2>
+      <p>With a passion for engineering excellence and an unwavering commitment to its clients, VNS Construction has made firm strides in establishing its brand across South India's construction landscape.</p>
+      <p>We are a holistic real estate company — managing every phase from design and permits to structural execution and interior finishing. Over 150 verifiable projects, always on time, always within budget.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-icon">⏱</div>
+          <div class="pillar-text">
+            <h4>On-Time Delivery</h4>
+            <p>Documented record of milestone adherence across every project.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">₹</div>
+          <div class="pillar-text">
+            <h4>Within Budget</h4>
+            <p>Transparent cost tracking — no hidden overruns, ever.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">◈</div>
+          <div class="pillar-text">
+            <h4>Holistic Delivery</h4>
+            <p>Structure to interiors — every phase managed in-house.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">✓</div>
+          <div class="pillar-text">
+            <h4>Fully Compliant</h4>
+            <p>All government approvals and permits handled by our team.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="caps" class="caps">
+  <div class="caps-head rev">
+    <div>
+      <div class="sec-kicker">What We Offer</div>
+      <h2 class="sec-h">Core <em>Capabilities</em></h2>
+    </div>
+    <p>From the first concept sketch to final handover — we bring engineering rigour and creative precision to every stage of the build.</p>
+  </div>
+  <div class="svc-row">
+    <div class="svc rev">
+      <div class="svc-num">01</div>
+      <h3>Architectural Design</h3>
+      <p>Balanced spatial planning and technical blueprinting, crafted to reflect your vision while meeting all regulatory requirements.</p>
+      <div class="svc-arr">Explore <span>→</span></div>
+    </div>
+    <div class="svc rev d1">
+      <div class="svc-num">02</div>
+      <h3>Structural Engineering</h3>
+      <p>Rigorous load-bearing analysis and seismic safety design ensuring durability in every structure we build.</p>
+      <div class="svc-arr">Explore <span>→</span></div>
+    </div>
+    <div class="svc rev d2">
+      <div class="svc-num">03</div>
+      <h3>Interior Design</h3>
+      <p>Curated environments balancing aesthetics and function — residential warmth or commercial refinement.</p>
+      <div class="svc-arr">Explore <span>→</span></div>
+    </div>
+    <div class="svc rev">
+      <div class="svc-num">04</div>
+      <h3>Landscape Design</h3>
+      <p>Outdoor environments thoughtfully designed to complement the built structure and enhance daily experience.</p>
+      <div class="svc-arr">Explore <span>→</span></div>
+    </div>
+    <div class="svc rev d1">
+      <div class="svc-num">05</div>
+      <h3>Govt. Approvals</h3>
+      <p>We navigate all regulatory paperwork — permits, compliance, and statutory approvals — so you never have to.</p>
+      <div class="svc-arr">Explore <span>→</span></div>
+    </div>
+    <div class="svc rev d2">
+      <div class="svc-num">06</div>
+      <h3>Project Management</h3>
+      <p>End-to-end coordination from site supervision to milestone reporting — full visibility at every stage.</p>
+      <div class="svc-arr">Explore <span>→</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="sectors" id="sectors">
+  <div class="sectors-wrap">
+    <div class="sectors-copy rev">
+      <div class="sec-kicker">Our Expertise</div>
+      <h2 class="sec-h">Sectors<br>We <em>Build In</em></h2>
+      <p>We bring the same engineering discipline and creative rigour to every project type — from intimate private residences to large-scale institutional campuses.</p>
+    </div>
+    <div class="sec-list rev d1">
+      <div class="sec-item"><div class="sec-dot"></div><span>Individual Homes & Villas</span></div>
+      <div class="sec-item"><div class="sec-dot"></div><span>Educational Institutions</span></div>
+      <div class="sec-item"><div class="sec-dot"></div><span>Apartment Complexes</span></div>
+      <div class="sec-item"><div class="sec-dot"></div><span>Textile Industry Buildings</span></div>
+      <div class="sec-item"><div class="sec-dot"></div><span>Food Industry Buildings</span></div>
+      <div class="sec-item"><div class="sec-dot"></div><span>Commercial Shopping Complexes</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="proj" class="projects">
+  <!-- Completed -->
+  <div class="proj-block">
+    <div class="proj-info">
+      <div class="proj-type">01 · Portfolio</div>
+      <h2 class="proj-h">Completed<br><em>Handovers</em></h2>
+      <p class="proj-sub">Verified structural integrity across residential, commercial and institutional sectors throughout Tamil Nadu.</p>
+      <div class="proj-count">150+</div>
+    </div>
+    <div class="stack-area">
+      <!-- Left Details -->
+      <div class="stack-details" id="details-a">
+        <h4 id="proj-title-a">VNS Moorthy Residence</h4>
+        <div class="location" id="proj-loc-a">Erode, Tamil Nadu</div>
+        <p id="proj-desc-a">Luxury 4BHK independent villa with modern elevation and premium finishes. Completed in 2024.</p>
+        <div class="stack-meta">
+          <div><span>Area</span>3,850 sq.ft</div>
+          <div><span>Status</span>Handover 2024</div>
+        </div>
+      </div>
+
+      <!-- Stack Images -->
+      <div class="stack-wrap" id="stk-a">
+        <div class="s-card act" data-title="VNS Moorthy Residence" data-loc="Erode, Tamil Nadu" data-desc="Luxury 4BHK independent villa with modern elevation and premium finishes. Completed in 2024." data-area="3,850 sq.ft">
+          <img src="./completed/PNG/VNS moorthy.png" onerror="this.src='https://www.vnsconstruction.in/assets/img/portfolio/apartment.jpg'" alt="VNS Moorthy"/>
+          <div class="s-overlay"><h4>VNS Moorthy Residence</h4><span>Residential · Erode</span></div>
+        </div>
+        <div class="s-card nxt" data-title="Karpagam Complex" data-loc="Erode, Tamil Nadu" data-desc="Premium 3-storey commercial complex with ground floor retail and upper floor offices." data-area="18,200 sq.ft">
+          <img src="./completed/PNG/karpagam complex.png" onerror="this.src='https://www.vnsconstruction.in/assets/img/portfolio/comercial_complex.jpg'" alt="Karpagam"/>
+          <div class="s-overlay"><h4>Karpagam Complex</h4><span>Commercial · Erode</span></div>
+        </div>
+        <div class="s-card hid" data-title="PKP New Block" data-loc="Tamil Nadu" data-desc="New academic block for P.K.P. Educational Trust featuring modern classrooms and labs." data-area="42,000 sq.ft">
+          <img src="./completed/PNG/pkp new block.png" onerror="this.src='https://www.vnsconstruction.in/assets/img/portfolio/school_building.jpg'" alt="PKP"/>
+          <div class="s-overlay"><h4>PKP New Block</h4><span>Educational · Tamil Nadu</span></div>
+        </div>
+      </div>
+
+      <div class="stack-nav">
+        <button class="s-btn s-btn-prev" data-stack="stk-a" data-dir="-1">←</button>
+        <button class="s-btn" data-stack="stk-a" data-dir="1">→</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ongoing -->
+  <div class="proj-block">
+    <div class="proj-info">
+      <div class="proj-type">02 · Active Sites</div>
+      <h2 class="proj-h">Ongoing<br><em>Operations</em></h2>
+      <p class="proj-sub">High-impact developments currently under precision execution across Tamil Nadu.</p>
+      <div class="proj-count">Live</div>
+    </div>
+    <div class="stack-area">
+      <!-- Left Details -->
+      <div class="stack-details" id="details-b">
+        <h4 id="proj-title-b">SSM Physiotherapy Block</h4>
+        <div class="location" id="proj-loc-b">Erode, Tamil Nadu</div>
+        <p id="proj-desc-b">State-of-the-art physiotherapy and rehabilitation block for SSM Institutions. Foundation completed.</p>
+        <div class="stack-meta">
+          <div><span>Area</span>14,500 sq.ft</div>
+          <div><span>Status</span>65% Complete</div>
+        </div>
+      </div>
+
+      <!-- Stack Images -->
+      <div class="stack-wrap" id="stk-b">
+        <div class="s-card act" data-title="SSM Physiotherapy Block" data-loc="Erode, Tamil Nadu" data-desc="State-of-the-art physiotherapy and rehabilitation block for SSM Institutions. Foundation completed." data-area="14,500 sq.ft">
+          <img src="./on_going/SSM physiotherapy block.jpg" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800'" alt="SSM Physio"/>
+          <div class="s-overlay"><h4>SSM Physiotherapy Block</h4><span>Educational · Active</span></div>
+        </div>
+        <div class="s-card nxt" data-title="SSM Central School" data-loc="Erode, Tamil Nadu" data-desc="New central school block with smart classrooms and auditorium." data-area="28,000 sq.ft">
+          <img src="./on_going/SSM central school.jpg" onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=800'" alt="SSM School"/>
+          <div class="s-overlay"><h4>SSM Central School</h4><span>Institutional · Active</span></div>
+        </div>
+        <div class="s-card hid" data-title="Gowtham Site" data-loc="Erode, Tamil Nadu" data-desc="Premium villa development in prime location." data-area="6 villas">
+          <img src="./on_going/gowtham site.jpg" onerror="this.src='https://images.unsplash.com/photo-1590644365607-1c5a519a7a37?auto=format&fit=crop&q=80&w=800'" alt="Gowtham"/>
+          <div class="s-overlay"><h4>Gowtham Site</h4><span>Residential · Active</span></div>
+        </div>
+      </div>
+
+      <div class="stack-nav">
+        <button class="s-btn s-btn-prev" data-stack="stk-b" data-dir="-1">←</button>
+        <button class="s-btn" data-stack="stk-b" data-dir="1">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHRONICLES -->
+<section id="chron" class="chron">
+  <div class="chron-head">
+    <div class="rev">
+      <div class="sec-kicker">Media</div>
+      <h2 class="sec-h"><em>Gallery</em></h2>
+    </div>
+  </div>
+  <div class="g-mosaic rev">
+    <div class="g-pic"><img src="https://www.vnsconstruction.in/assets/img/portfolio/apartment.jpg" alt="VNS Moorthi Enclave"/><div class="g-lbl"><span>VNS Moorthi Enclave</span></div></div>
+    <div class="g-pic"><img src="https://www.vnsconstruction.in/assets/img/portfolio/2.jpg" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800'" alt="SCP Apartment"/><div class="g-lbl"><span>SCP Apartment</span></div></div>
+    <div class="g-pic"><img src="https://www.vnsconstruction.in/assets/img/portfolio/3.jpg" onerror="this.src='https://images.unsplash.com/photo-1590644365607-1c5a519a7a37?auto=format&fit=crop&q=80&w=800'" alt="PKP Block"/><div class="g-lbl"><span>PKP New Block</span></div></div>
+    <div class="g-pic"><img src="https://www.vnsconstruction.in/assets/img/portfolio/1.jpg" onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=800'" alt="Ramya Jewels"/><div class="g-lbl"><span>Ramya Jewels</span></div></div>
+    <div class="g-pic"><img src="https://www.vnsconstruction.in/assets/img/portfolio/comercial_complex.jpg" alt="Karpagam Complex"/><div class="g-lbl"><span>Karpagam Complex</span></div></div>
+    <div class="g-pic"><img src="https://www.vnsconstruction.in/assets/img/portfolio/school_building.jpg" alt="PKP School"/><div class="g-lbl"><span>P.K.P. Educational Trust</span></div></div>
+    <div class="g-pic"><img src="https://www.vnsconstruction.in/assets/img/portfolio/10.jpg" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800'" alt="RB Wovens"/><div class="g-lbl"><span>RB Wovens, Erode</span></div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="testi-head rev">
+    <div class="sec-kicker">Client Voices</div>
+    <h2 class="sec-h">What Clients <em>Say</em></h2>
+  </div>
+  <div class="testi-row">
+    <div class="t-card rev">
+      <blockquote>"Outstanding structural quality and strict adherence to timelines. Their architectural expertise gave us complete peace of mind from groundbreaking to handover."</blockquote>
+      <div class="t-author">Dr. Ramesh K. — SSM Educational Trust</div>
+    </div>
+    <div class="t-card rev d1">
+      <blockquote>"The transparency throughout the process was unmatched. VNS Construction delivered our vision with engineering precision that genuinely exceeded every expectation."</blockquote>
+      <div class="t-author">Aarmugham — Residential Client, Erode</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="contact-l">
+    <div class="sec-kicker">Get In Touch</div>
+    <h2 class="sec-h">Let's Build<br><em>Together</em></h2>
+    <p>Ready to bring your vision to life? Our engineering team is ready to discuss your project with the same precision and care we bring to every build.</p>
+    
+    <div class="c-items">
+      <div class="c-item">
+        <div class="c-ico">📍</div>
+        <div>
+          <label>Address</label>
+          <span>16/7 Kumarasamy Street, Erode – 638001, Tamil Nadu</span>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="c-ico">✉</div>
+        <div>
+          <label>Email</label>
+          <span>vnsconstruction@hotmail.com</span>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="c-ico">🕐</div>
+        <div>
+          <label>Hours</label>
+          <span>Monday – Saturday · 9:00 AM – 6:00 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <h3>Send an Enquiry</h3>
+    <p>Our team typically responds within one business day.</p>
+    
+    <div class="f-row">
+      <div class="fg"><label>Client Name</label><input type="text" placeholder="Full name"/></div>
+      <div class="fg"><label>Phone</label><input type="tel" placeholder="+91 98765 43210"/></div>
+    </div>
+    <div class="fg"><label>Email Address</label><input type="email" placeholder="you@example.com"/></div>
+    <div class="fg">
+      <label>Project Type</label>
+      <select>
+        <option>Residential — Individual Home / Villa</option>
+        <option>Residential — Apartment Complex</option>
+        <option>Commercial — Shopping / Office Complex</option>
+        <option>Institutional — Educational Campus</option>
+        <option>Industrial — Textile / Food Facility</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="fg"><label>Project Details</label><textarea placeholder="Tell us about your project — location, approximate size, timeline, and any special requirements..."></textarea></div>
+    
+    <button class="btn-send">Submit Enquiry →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="f-brand">
+      <div class="logo">
+        <div class="logo-sq" style="width:34px;height:34px;">
+          <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="36" height="36" stroke="#C4743A" stroke-width="1.2"/>
+            <text x="19" y="24" text-anchor="middle" font-family="Outfit" font-size="11" font-weight="700" fill="#C4743A" letter-spacing="1">VNS</text>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <b>Construction</b>
+          <small>Erode · Est. 1999</small>
+        </div>
+      </div>
+      <p>Engineering South India's homes, institutions and commercial landmarks since 1999 — precision in every square foot.</p>
+    </div>
+    <div class="f-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#caps">Architectural Design</a></li>
+        <li><a href="#caps">Structural Engineering</a></li>
+        <li><a href="#caps">Interior Design</a></li>
+        <li><a href="#caps">Landscape Design</a></li>
+        <li><a href="#caps">Govt. Approvals</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Sectors</h4>
+      <ul>
+        <li><a href="#sectors">Residential</a></li>
+        <li><a href="#sectors">Educational</a></li>
+        <li><a href="#sectors">Commercial</a></li>
+        <li><a href="#sectors">Industrial</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#proj">Projects</a></li>
+        <li><a href="#chron">Chronicles</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <p>© 2026 <span>VNS Construction</span> · Erode, Tamil Nadu. All rights reserved.</p>
+    <p>Engineered with purpose · Built with <span>precision</span></p>
+  </div>
+</footer>
+
+<script>
+/* Progress bar */
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  document.getElementById('prog').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%';
+  document.getElementById('nav').classList.toggle('s',d.scrollTop>60);
+});
+
+/* Scroll reveal */
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:.1});
+document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+
+/* Smooth anchor scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+  });
+});
+
+/* Tab buttons */
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+  });
+});
+
+/* Enhanced Stack with dynamic details */
+function initStack(id){
+  const wrap = document.getElementById(id);
+  if(!wrap) return;
+  
+  const cards = [...wrap.querySelectorAll('.s-card')];
+  const detailsContainer = document.getElementById('details-' + id.split('-')[1]);
+  let cur = 0;
+
+  function updateDetails(card){
+    if(!detailsContainer) return;
+    const title = card.dataset.title || 'Project';
+    const loc = card.dataset.loc || '';
+    const desc = card.dataset.desc || '';
+    const area = card.dataset.area || '';
+
+    detailsContainer.querySelector('h4').textContent = title;
+    detailsContainer.querySelector('.location').textContent = loc;
+    detailsContainer.querySelector('p').textContent = desc;
+    
+    const metaDivs = detailsContainer.querySelectorAll('.stack-meta > div');
+    if(metaDivs[0]) metaDivs[0].lastChild.textContent = area;
+  }
+
+  function render(){
+    cards.forEach((c,i)=>{
+      c.className='s-card';
+      const offset=(i-cur+cards.length)%cards.length;
+      if(offset===0){
+        c.classList.add('act');
+        updateDetails(c);
+      }
+      else if(offset===1) c.classList.add('nxt');
+      else if(offset===cards.length-1) c.classList.add('prv');
+      else c.classList.add('hid');
+    });
+  }
+
+  document.querySelectorAll(`[data-stack="${id}"]`).forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const dir = parseInt(btn.dataset.dir);
+      cur = (cur + dir + cards.length) % cards.length;
+      render();
+    });
+  });
+
+  // Initial render
+  if(cards.length > 0) updateDetails(cards[0]);
+  render();
+}
+
+initStack('stk-a');
+initStack('stk-b');
+</script>
+</body>
+</html>
