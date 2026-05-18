@@ -414,6 +414,10 @@ nav.s .nav-r a{height:60px;}
   grid-template-columns:repeat(3,1fr);
   gap:2px;
 }
+.svc-row.four-col{grid-template-columns:repeat(4,1fr);}
+@media(max-width:1200px){.svc-row.four-col{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.svc-row.four-col{grid-template-columns:1fr;}}
+
 .svc{
   background:var(--bg-3);
   padding:48px 36px 40px;
@@ -587,14 +591,21 @@ nav.s .nav-r a{height:60px;}
   flex:1.8;
   position:relative;
   width:100%;
-  max-width:580px;
-  height:360px;
+  max-width:620px;
+  height:380px;
   perspective:1800px;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
 }
 .s-card{
   position:absolute;
-  width:88%;height:100%;
+  width:88%;
+  height:100%;
+  max-width:520px;
   overflow:hidden;
+  border-radius:4px;
+  box-shadow:0 25px 50px -12px rgba(0, 0, 0, 0.6);
   transition:all .75s cubic-bezier(.16,1,.3,1);
   cursor:pointer;
 }
@@ -605,9 +616,9 @@ nav.s .nav-r a{height:60px;}
 }
 .s-card.act img{filter:saturate(.95)brightness(.95);}
 .s-card.act{z-index:10;transform:translateX(0) scale(1);opacity:1;}
-.s-card.nxt{z-index:5;transform:translateX(9%) scale(0.94);opacity:.55;}
-.s-card.prv{z-index:1;transform:translateX(-130%) scale(0.88);opacity:0;}
-.s-card.hid{z-index:1;transform:translateX(25%) scale(0.88);opacity:.2;}
+.s-card.nxt{z-index:5;transform:translateX(12%) scale(0.92);opacity:0.65;}
+.s-card.prv{z-index:1;transform:translateX(-50%) scale(0.85);opacity:0.1;}
+.s-card.hid{z-index:1;transform:translateX(25%) scale(0.8);opacity:0.15;}
 
 .s-overlay{
   position:absolute;bottom:0;left:0;right:0;
@@ -663,19 +674,19 @@ nav.s .nav-r a{height:60px;}
 .tab.on,.tab:hover{background:var(--copper);color:var(--bg);border-color:var(--copper);}
 
 .g-mosaic{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  grid-auto-rows:210px;
+  display:flex;
+  flex-wrap:wrap;
+  flex-direction:row;
   gap:3px;
 }
-.g-pic{position:relative;overflow:hidden;background:var(--bg-3);}
-.g-pic:nth-child(1){grid-column:span 5;grid-row:span 2;}
-.g-pic:nth-child(2){grid-column:span 4;}
-.g-pic:nth-child(3){grid-column:span 3;}
-.g-pic:nth-child(4){grid-column:span 3;}
-.g-pic:nth-child(5){grid-column:span 4;}
-.g-pic:nth-child(6){grid-column:span 7;grid-row:span 1;}
-.g-pic:nth-child(7){grid-column:span 5;}
+.g-pic{position:relative;overflow:hidden;background:var(--bg-3);flex:1 1 200px;height:210px;}
+.g-pic:nth-child(1){}
+.g-pic:nth-child(2){}
+.g-pic:nth-child(3){}
+.g-pic:nth-child(4){}
+.g-pic:nth-child(5){}
+.g-pic:nth-child(6){}
+.g-pic:nth-child(7){}
 
 .g-pic img{
   width:100%;height:100%;object-fit:cover;
@@ -968,6 +979,70 @@ footer{
   .hero-badge{right:16px;bottom:16px;}
   .hero-l{padding:140px 6vw 80px 6vw;}
 }
+
+/* ═══════════════════════════════════════════
+   NEW SECTIONS CSS
+   ═══════════════════════════════════════════ */
+.container{padding:0 7vw;}
+
+/* Why Choose Us */
+.why{padding:120px 0;background:var(--bg-2);}
+.why-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:32px;margin-top:60px;
+}
+.why-card{
+  padding:40px;background:var(--bg-3);
+  border:1px solid var(--line-sub);
+  transition:all .4s ease;
+}
+.why-card:hover{transform:translateY(-10px);border-color:var(--copper);}
+.why-icon{font-size:32px;color:var(--copper);margin-bottom:24px;}
+.why-card h4{font-size:16px;font-weight:600;margin-bottom:12px;color:var(--ink);}
+.why-card p{font-size:14px;color:var(--ink-3);line-height:1.6;}
+
+/* Process */
+.process{padding:120px 0;background:var(--bg);}
+.process-steps{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:40px;margin-top:60px;
+}
+.p-step{position:relative;padding-left:60px;}
+.p-num{
+  position:absolute;left:0;top:0;
+  font-family:'Playfair Display',serif;
+  font-size:32px;color:var(--copper-lt);opacity:.4;
+}
+.p-step h4{font-size:15px;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;color:var(--ink);}
+.p-step p{font-size:13px;color:var(--ink-3);line-height:1.7;}
+
+/* Leadership */
+.lead{padding:120px 0;background:var(--bg-2);}
+.lead-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:center;}
+.lead-img img{width:100%;height:600px;object-fit:cover;border-radius:2px;}
+.lead-copy h3{font-family:'Playfair Display',serif;font-size:42px;margin-bottom:24px;}
+.lead-copy p{font-size:16px;line-height:1.8;color:var(--ink-2);margin-bottom:32px;}
+.philosophy{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;}
+.phil-item h5{font-size:11px;text-transform:uppercase;letter-spacing:3px;color:var(--copper);margin-bottom:12px;}
+.phil-item p{font-size:14px;color:var(--ink-3);}
+
+/* Careers */
+.careers{padding:120px 0;background:var(--bg-3);}
+.job-list{margin-top:60px;}
+.job-item{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:32px 0;border-bottom:1px solid var(--line-sub);
+  transition:padding-left .3s;
+}
+.job-item:hover{padding-left:20px;border-color:var(--copper);}
+.job-info h4{font-size:18px;color:var(--ink);margin-bottom:6px;}
+.job-info span{font-size:12px;color:var(--copper);text-transform:uppercase;letter-spacing:2px;}
+
+@media(max-width:1024px){
+  .why-grid,.process-steps,.lead-grid{grid-template-columns:1fr;}
+  .lead-img img{height:400px;}
+}
+
 </style>
 </head>
 <body>
@@ -978,38 +1053,41 @@ footer{
 <nav id="nav">
 <a href="#" class="logo">
   <div class="logo-sq" style="width:52px; height:80px;">
-    <img src="LOGO.png" alt="Company Logo" style="width:100%; height:100%; object-fit:contain;">
+    <img src="logo.png" alt="Company Logo" style="width:100%; height:100%; object-fit:contain;">
   </div>
   <div class="logo-text">
     <small>Erode · Est. 1999</small>
   </div>
 </a>
   <div class="nav-r">
-    <a href="#caps">Capabilities</a>
-    <a href="#chron">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#leadership">Leadership</a>
+    <a href="#careers">Careers</a>
     <a href="#proj">Projects</a>
-    <a href="#contact" class="cta">Enquire</a>
+    <a href="#contact" class="cta">Request Consultation</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-l">
-    <div class="h-kicker"><span></span>South India's Engineering Partner</div>
+    <div class="h-kicker"><span></span>client keep coming back, Trusted Construction for Modern Infrastructure</div>
     <h1>
-      Structural<br>
-      <span class="ital">Excellence.</span><br>
+      Engineering<br>
+      <span class="ital">Legacy.</span><br>
       <span class="sage">Built.</span>
     </h1>
-    <p class="hero-sub">Precision engineering and architectural integrity — over 150 landmark projects delivered across Tamil Nadu in two decades of trusted practice.</p>
+    <p class="hero-sub">Delivering high-quality residential, healthcare, and commercial construction projects across Tamil Nadu.</p>
     <div class="hero-actions">
       <a href="#proj" class="btn btn-solid">View Our Work <span>→</span></a>
-      <a href="#contact" class="btn btn-ghost">Start a Project</a>
+      <a href="#contact" class="btn btn-ghost">Request a Consultation</a>
     </div>
     <div class="hero-strip">
-      <div class="hs"><span class="hs-n">27Y</span><span class="hs-l">Engineering Heritage</span></div>
-      <div class="hs"><span class="hs-n">150+</span><span class="hs-l">Projects Delivered</span></div>
-      <div class="hs"><span class="hs-n">3L</span><span class="hs-l">Sq.Ft Capacity</span></div>
+      <div class="hs"><span class="hs-n">₹260+ Cr</span><span class="hs-l">Project Portfolio</span></div>
+      <div class="hs"><span class="hs-n">50+</span><span class="hs-l">Completed Projects</span></div>
+      <div class="hs"><span class="hs-n">18+</span><span class="hs-l">Ongoing Projects</span></div>
+      <div class="hs"><span class="hs-n">10L+</span><span class="hs-l">Sq.ft Delivered</span></div>
+      <div class="hs"><span class="hs-n">Hospital</span><span class="hs-l">Specialty Experience</span></div>
     </div>
   </div>
   <div class="hero-r">
@@ -1054,8 +1132,8 @@ footer{
     <div class="about-copy rev d1">
       <div class="sec-kicker">About VNS</div>
       <h2 class="sec-h">Built on <em>Precision</em>,<br>Guided by <span class="sage">Trust</span></h2>
+      <p>VNS Construction is a growing construction company specializing in residential, healthcare, institutional, and commercial projects with a focus on quality execution, transparency, and dependable delivery.</p>
       <p>With a passion for engineering excellence and an unwavering commitment to its clients, VNS Construction has made firm strides in establishing its brand across South India's construction landscape.</p>
-      <p>We are a holistic real estate company — managing every phase from design and permits to structural execution and interior finishing. Over 150 verifiable projects, always on time, always within budget.</p>
       <div class="pillars">
         <div class="pillar">
           <div class="pillar-icon">⏱</div>
@@ -1099,75 +1177,157 @@ footer{
     </div>
     <p>From the first concept sketch to final handover — we bring engineering rigour and creative precision to every stage of the build.</p>
   </div>
-  <div class="svc-row">
+  <div class="svc-row four-col">
     <div class="svc rev">
       <div class="svc-num">01</div>
-      <h3>Architectural Design</h3>
-      <p>Balanced spatial planning and technical blueprinting, crafted to reflect your vision while meeting all regulatory requirements.</p>
+      <h3>Residential Construction</h3>
+      <p>Villas, Apartments, and Premium Homes crafted with architectural finesse and structural integrity.</p>
       <div class="svc-arr">Explore <span>→</span></div>
     </div>
     <div class="svc rev d1">
       <div class="svc-num">02</div>
-      <h3>Structural Engineering</h3>
-      <p>Rigorous load-bearing analysis and seismic safety design ensuring durability in every structure we build.</p>
+      <h3>Commercial Construction</h3>
+      <p>Office Buildings, Commercial Complexes, and Retail Spaces designed for efficiency and modern aesthetics.</p>
       <div class="svc-arr">Explore <span>→</span></div>
     </div>
     <div class="svc rev d2">
       <div class="svc-num">03</div>
-      <h3>Interior Design</h3>
-      <p>Curated environments balancing aesthetics and function — residential warmth or commercial refinement.</p>
+      <h3>Healthcare Construction</h3>
+      <p>Hospitals, Clinics, and Diagnostic Centers built with precision to meet specialized medical standards.</p>
       <div class="svc-arr">Explore <span>→</span></div>
     </div>
-    <div class="svc rev">
+    <div class="svc rev d3">
       <div class="svc-num">04</div>
-      <h3>Landscape Design</h3>
-      <p>Outdoor environments thoughtfully designed to complement the built structure and enhance daily experience.</p>
-      <div class="svc-arr">Explore <span>→</span></div>
-    </div>
-    <div class="svc rev d1">
-      <div class="svc-num">05</div>
-      <h3>Govt. Approvals</h3>
-      <p>We navigate all regulatory paperwork — permits, compliance, and statutory approvals — so you never have to.</p>
-      <div class="svc-arr">Explore <span>→</span></div>
-    </div>
-    <div class="svc rev d2">
-      <div class="svc-num">06</div>
-      <h3>Project Management</h3>
-      <p>End-to-end coordination from site supervision to milestone reporting — full visibility at every stage.</p>
+      <h3>Institutional Projects</h3>
+      <p>Schools, Colleges, and Public Buildings that foster learning and community growth.</p>
       <div class="svc-arr">Explore <span>→</span></div>
     </div>
   </div>
 </section>
 
-<!-- SECTORS -->
-<section class="sectors" id="sectors">
-  <div class="sectors-wrap">
-    <div class="sectors-copy rev">
-      <div class="sec-kicker">Our Expertise</div>
-      <h2 class="sec-h">Sectors<br>We <em>Build In</em></h2>
-      <p>We bring the same engineering discipline and creative rigour to every project type — from intimate private residences to large-scale institutional campuses.</p>
+<!-- WHY CHOOSE US -->
+<section id="why" class="why">
+  <div class="container">
+    <div class="rev">
+      <div class="sec-kicker">Our Edge</div>
+      <h2 class="sec-h">Why <em>Choose Us?</em></h2>
     </div>
-    <div class="sec-list rev d1">
-      <div class="sec-item"><div class="sec-dot"></div><span>Individual Homes & Villas</span></div>
-      <div class="sec-item"><div class="sec-dot"></div><span>Educational Institutions</span></div>
-      <div class="sec-item"><div class="sec-dot"></div><span>Apartment Complexes</span></div>
-      <div class="sec-item"><div class="sec-dot"></div><span>Textile Industry Buildings</span></div>
-      <div class="sec-item"><div class="sec-dot"></div><span>Food Industry Buildings</span></div>
-      <div class="sec-item"><div class="sec-dot"></div><span>Commercial Shopping Complexes</span></div>
+    <div class="why-grid">
+      <div class="why-card rev">
+        <div class="why-icon">◈</div>
+        <h4>Strong Project Coordination</h4>
+        <p>Seamless management between design, engineering, and site teams.</p>
+      </div>
+      <div class="why-card rev d1">
+        <div class="why-icon">◈</div>
+        <h4>Experienced Site Supervision</h4>
+        <p>Rigorous oversight at every stage to ensure technical perfection.</p>
+      </div>
+      <div class="why-card rev d2">
+        <div class="why-icon">◈</div>
+        <h4>Transparent Communication</h4>
+        <p>Clear, honest, and frequent updates on project progress and budget.</p>
+      </div>
+      <div class="why-card rev">
+        <div class="why-icon">◈</div>
+        <h4>Commitment to Timelines</h4>
+        <p>A proven track record of meeting every milestone without compromise.</p>
+      </div>
+      <div class="why-card rev d1">
+        <div class="why-icon">◈</div>
+        <h4>Quality-Focused Execution</h4>
+        <p>Using premium materials and expert craftsmanship in every build.</p>
+      </div>
+      <div class="why-card rev d2">
+        <div class="why-icon">◈</div>
+        <h4>Structured Workflow & Planning</h4>
+        <p>Methodical approach that minimizes delays and maximizes efficiency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSTRUCTION PROCESS -->
+<section id="process" class="process">
+  <div class="container">
+    <div class="rev">
+      <div class="sec-kicker">The Journey</div>
+      <h2 class="sec-h">Construction <em>Process</em></h2>
+    </div>
+    <div class="process-steps">
+      <div class="p-step rev">
+        <div class="p-num">01</div>
+        <h4>Consultation</h4>
+        <p>Understanding your vision, requirements, and site parameters.</p>
+      </div>
+      <div class="p-step rev d1">
+        <div class="p-num">02</div>
+        <h4>Planning & Estimation</h4>
+        <p>Detailed budgeting, resource allocation, and project scheduling.</p>
+      </div>
+      <div class="p-step rev d2">
+        <div class="p-num">03</div>
+        <h4>Engineering Coordination</h4>
+        <p>Structural analysis and technical blueprinting by expert engineers.</p>
+      </div>
+      <div class="p-step rev d3">
+        <div class="p-num">04</div>
+        <h4>Site Execution</h4>
+        <p>Precision construction following strict safety and quality standards.</p>
+      </div>
+      <div class="p-step rev d4">
+        <div class="p-num">05</div>
+        <h4>Quality Checks</h4>
+        <p>Rigorous inspections at multiple levels before proceeding.</p>
+      </div>
+      <div class="p-step rev d5">
+        <div class="p-num">06</div>
+        <h4>Handover</h4>
+        <p>Final inspection and delivery of your completed project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership" class="lead">
+  <div class="container">
+    <div class="lead-grid">
+      <div class="lead-img rev">
+        <img src="vns_founder_portrait_1778957697349.png" alt="VNS Construction Founder"/>
+      </div>
+      <div class="lead-copy rev d1">
+        <div class="sec-kicker">Leadership</div>
+        <h3 class="sec-h">Built on <em>Vision</em>,<br>Led by <span class="sage">Experience</span></h3>
+        <p>Our leadership team brings decades of collective expertise in civil engineering and project management, driving VNS Construction towards a future of sustainable growth and architectural excellence.</p>
+        
+        <div class="philosophy">
+          <div class="phil-item">
+            <h5>Company Philosophy</h5>
+            <p>Transparency in every transaction, quality in every brick, and dependability in every delivery.</p>
+          </div>
+          <div class="phil-item">
+            <h5>Growth Vision</h5>
+            <p>To be the most trusted name in infrastructure development across South India, known for engineering precision.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="proj" class="projects">
-  <!-- Completed -->
+  
+  <!-- Completed Projects -->
   <div class="proj-block">
     <div class="proj-info">
       <div class="proj-type">01 · Portfolio</div>
       <h2 class="proj-h">Completed<br><em>Handovers</em></h2>
       <p class="proj-sub">Verified structural integrity across residential, commercial and institutional sectors throughout Tamil Nadu.</p>
-      <div class="proj-count">150+</div>
+      <div class="proj-count" id="count-a">1 / 3</div>
     </div>
+
     <div class="stack-area">
       <!-- Left Details -->
       <div class="stack-details" id="details-a">
@@ -1175,22 +1335,22 @@ footer{
         <div class="location" id="proj-loc-a">Erode, Tamil Nadu</div>
         <p id="proj-desc-a">Luxury 4BHK independent villa with modern elevation and premium finishes. Completed in 2024.</p>
         <div class="stack-meta">
-          <div><span>Area</span>3,850 sq.ft</div>
-          <div><span>Status</span>Handover 2024</div>
+          <div id="proj-scope-a"><span>Scope</span>Structural & Civil</div>
+          <div id="proj-status-a"><span>Status</span>Completed</div>
         </div>
       </div>
 
-      <!-- Stack Images -->
-      <div class="stack-wrap" id="stk-a">
-        <div class="s-card act" data-title="VNS Moorthy Residence" data-loc="Erode, Tamil Nadu" data-desc="Luxury 4BHK independent villa with modern elevation and premium finishes. Completed in 2024." data-area="3,850 sq.ft">
+      <!-- Right Stack - Improved Right Alignment -->
+      <div class="stack-wrap" id="stk-a" style="justify-content: flex-end;">
+        <div class="s-card act" data-title="VNS Moorthy Residence" data-type="Residential" data-loc="Erode, Tamil Nadu" data-scope="Premium 4BHK Independent Villa with Modern Elevation" data-status="Completed">
           <img src="./completed/PNG/VNS moorthy.png" onerror="this.src='https://www.vnsconstruction.in/assets/img/portfolio/apartment.jpg'" alt="VNS Moorthy"/>
           <div class="s-overlay"><h4>VNS Moorthy Residence</h4><span>Residential · Erode</span></div>
         </div>
-        <div class="s-card nxt" data-title="Karpagam Complex" data-loc="Erode, Tamil Nadu" data-desc="Premium 3-storey commercial complex with ground floor retail and upper floor offices." data-area="18,200 sq.ft">
+        <div class="s-card nxt" data-title="Karpagam Complex" data-type="Commercial" data-loc="Erode, Tamil Nadu" data-scope="3-Storey Commercial Retail & Office Hub" data-status="Completed">
           <img src="./completed/PNG/karpagam complex.png" onerror="this.src='https://www.vnsconstruction.in/assets/img/portfolio/comercial_complex.jpg'" alt="Karpagam"/>
           <div class="s-overlay"><h4>Karpagam Complex</h4><span>Commercial · Erode</span></div>
         </div>
-        <div class="s-card hid" data-title="PKP New Block" data-loc="Tamil Nadu" data-desc="New academic block for P.K.P. Educational Trust featuring modern classrooms and labs." data-area="42,000 sq.ft">
+        <div class="s-card hid" data-title="PKP New Block" data-type="Institutional" data-loc="Tamil Nadu" data-scope="Educational Block with Smart Classrooms & Labs" data-status="Completed">
           <img src="./completed/PNG/pkp new block.png" onerror="this.src='https://www.vnsconstruction.in/assets/img/portfolio/school_building.jpg'" alt="PKP"/>
           <div class="s-overlay"><h4>PKP New Block</h4><span>Educational · Tamil Nadu</span></div>
         </div>
@@ -1203,14 +1363,15 @@ footer{
     </div>
   </div>
 
-  <!-- Ongoing -->
+  <!-- Ongoing Projects -->
   <div class="proj-block">
     <div class="proj-info">
       <div class="proj-type">02 · Active Sites</div>
       <h2 class="proj-h">Ongoing<br><em>Operations</em></h2>
       <p class="proj-sub">High-impact developments currently under precision execution across Tamil Nadu.</p>
-      <div class="proj-count">Live</div>
+      <div class="proj-count" id="count-b">1 / 3</div>
     </div>
+
     <div class="stack-area">
       <!-- Left Details -->
       <div class="stack-details" id="details-b">
@@ -1218,24 +1379,24 @@ footer{
         <div class="location" id="proj-loc-b">Erode, Tamil Nadu</div>
         <p id="proj-desc-b">State-of-the-art physiotherapy and rehabilitation block for SSM Institutions. Foundation completed.</p>
         <div class="stack-meta">
-          <div><span>Area</span>14,500 sq.ft</div>
-          <div><span>Status</span>65% Complete</div>
+          <div id="proj-scope-b"><span>Scope</span>Structural Engineering</div>
+          <div id="proj-status-b"><span>Status</span>Ongoing</div>
         </div>
       </div>
 
-      <!-- Stack Images -->
-      <div class="stack-wrap" id="stk-b">
-        <div class="s-card act" data-title="SSM Physiotherapy Block" data-loc="Erode, Tamil Nadu" data-desc="State-of-the-art physiotherapy and rehabilitation block for SSM Institutions. Foundation completed." data-area="14,500 sq.ft">
-          <img src="./on_going/SSM physiotherapy block.jpg" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800'" alt="SSM Physio"/>
-          <div class="s-overlay"><h4>SSM Physiotherapy Block</h4><span>Educational · Active</span></div>
+      <!-- Right Stack -->
+      <div class="stack-wrap" id="stk-b" style="justify-content: flex-end;">
+        <div class="s-card act" data-title="SSM Physiotherapy Block" data-type="Healthcare" data-loc="Erode, Tamil Nadu" data-scope="State-of-the-Art Physiotherapy & Rehab Facility" data-status="Ongoing">
+          <img src="./on_going/SSM physiotherapy block.jpg" onerror="this.src='https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800'" alt="SSM Physio"/>
+          <div class="s-overlay"><h4>SSM Physiotherapy Block</h4><span>Healthcare · Ongoing</span></div>
         </div>
-        <div class="s-card nxt" data-title="SSM Central School" data-loc="Erode, Tamil Nadu" data-desc="New central school block with smart classrooms and auditorium." data-area="28,000 sq.ft">
+        <div class="s-card nxt" data-title="SSM Central School" data-type="Institutional" data-loc="Erode, Tamil Nadu" data-scope="Modern Educational Block with Smart Classrooms" data-status="Ongoing">
           <img src="./on_going/SSM central school.jpg" onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=800'" alt="SSM School"/>
-          <div class="s-overlay"><h4>SSM Central School</h4><span>Institutional · Active</span></div>
+          <div class="s-overlay"><h4>SSM Central School</h4><span>Institutional · Ongoing</span></div>
         </div>
-        <div class="s-card hid" data-title="Gowtham Site" data-loc="Erode, Tamil Nadu" data-desc="Premium villa development in prime location." data-area="6 villas">
+        <div class="s-card hid" data-title="Gowtham Site" data-type="Residential" data-loc="Erode, Tamil Nadu" data-scope="Premium Villa Development in Prime Location" data-status="Ongoing">
           <img src="./on_going/gowtham site.jpg" onerror="this.src='https://images.unsplash.com/photo-1590644365607-1c5a519a7a37?auto=format&fit=crop&q=80&w=800'" alt="Gowtham"/>
-          <div class="s-overlay"><h4>Gowtham Site</h4><span>Residential · Active</span></div>
+          <div class="s-overlay"><h4>Gowtham Site</h4><span>Residential · Ongoing</span></div>
         </div>
       </div>
 
@@ -1266,6 +1427,68 @@ footer{
   </div>
 </section>
 
+<!-- CAREERS -->
+<section id="careers" class="careers">
+  <div class="container">
+    <div class="rev">
+      <div class="sec-kicker">Join Our Team</div>
+      <h2 class="sec-h">Build Your <em>Career</em></h2>
+      <p>We are always looking for talented individuals to join our growing family. Explore open positions below.</p>
+    </div>
+    <div class="job-list">
+      <div class="job-item rev">
+        <div class="job-info">
+          <h4>Site Engineers</h4>
+          <span>Full-Time · Tamil Nadu</span>
+        </div>
+        <a href="#contact" class="btn btn-ghost">Apply Now</a>
+      </div>
+      <div class="job-item rev d1">
+        <div class="job-info">
+          <h4>Supervisors</h4>
+          <span>Full-Time · Multiple Locations</span>
+        </div>
+        <a href="#contact" class="btn btn-ghost">Apply Now</a>
+      </div>
+      <div class="job-item rev d2">
+        <div class="job-info">
+          <h4>Project Managers</h4>
+          <span>Senior Level · Erode</span>
+        </div>
+        <a href="#contact" class="btn btn-ghost">Apply Now</a>
+      </div>
+      <div class="job-item rev d3">
+        <div class="job-info">
+          <h4>Interns</h4>
+          <span>Engineering Students · Summer 2026</span>
+        </div>
+        <a href="#contact" class="btn btn-ghost">Apply Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="sectors" id="sectors">
+  <div class="sectors-wrap">
+    <div class="sectors-copy rev">
+      <div class="sec-kicker">Our Expertise</div>
+      <h2 class="sec-h">Sectors<br>We <em>Build In</em></h2>
+      <p>We bring the same engineering discipline and creative rigour to every project type — from intimate private residences to large-scale institutional campuses.</p>
+    </div>
+    <div class="sec-list rev d1">
+      <div class="sec-item"><div class="sec-dot"></div><span>Individual Homes & Villas</span></div>
+      <div class="sec-item"><div class="sec-dot"></div><span>Educational Institutions</span></div>
+      <div class="sec-item"><div class="sec-dot"></div><span>Apartment Complexes</span></div>
+      <div class="sec-item"><div class="sec-dot"></div><span>Textile Industry Buildings</span></div>
+      <div class="sec-item"><div class="sec-dot"></div><span>Food Industry Buildings</span></div>
+      <div class="sec-item"><div class="sec-dot"></div><span>Commercial Shopping Complexes</span></div>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- TESTIMONIALS -->
 <section class="testi">
   <div class="testi-head rev">
@@ -1281,6 +1504,15 @@ footer{
       <blockquote>"The transparency throughout the process was unmatched. VNS Construction delivered our vision with engineering precision that genuinely exceeded every expectation."</blockquote>
       <div class="t-author">Aarmugham — Residential Client, Erode</div>
     </div>
+  </div>
+</section>
+
+<!-- COMPANY PROFILE DOWNLOAD -->
+<section class="download-pdf" style="padding: 60px 7vw; background: var(--bg-3); text-align: center; border-top: 1px solid var(--line-sub);">
+  <div class="rev">
+    <h3 class="sec-h" style="font-size: 28px; margin-bottom: 20px;">Download Our <em>Company Profile</em></h3>
+    <p style="color: var(--ink-3); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">Get a comprehensive overview of our services, leadership, and completed & ongoing projects in a single document.</p>
+    <a href="VNS_Company_Profile.pdf" class="btn btn-solid" download>Download PDF Profile (12.4 MB) <span>↓</span></a>
   </div>
 </section>
 
@@ -1306,12 +1538,24 @@ footer{
         </div>
       </div>
       <div class="c-item">
-        <div class="c-ico">🕐</div>
+        <div class="c-ico">📞</div>
         <div>
-          <label>Hours</label>
-          <span>Monday – Saturday · 9:00 AM – 6:00 PM</span>
+          <label>Phone</label>
+          <span>+91 98427 12345 / 0424 2212345</span>
         </div>
       </div>
+      <div class="c-item">
+        <div class="c-ico">💬</div>
+        <div>
+          <label>WhatsApp</label>
+          <a href="https://wa.me/919842712345" target="_blank" style="color:var(--copper); font-weight:600;">Chat with us now →</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Google Maps Integration -->
+    <div style="margin-top: 40px; height: 250px; width: 100%; filter: grayscale(1) invert(1) contrast(1.2); border: 1px solid var(--line-sub);">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3911.874406263435!2d77.72494!3d11.34105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96f2d2562479f%3A0x633534d0b168972e!2s16%2F7%2C%20Kumarasamy%20St%2C%20Erode%2C%20Tamil%20Nadu%20638001!5e0!3m2!1sen!2sin!4v1715880000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
     <blockquote style="margin-top:44px;padding-left:18px;border-left:2px solid var(--copper);font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:var(--ink-3);line-height:1.7;">
       "We don't just build walls — we build a legacy of strength."<br>
@@ -1436,16 +1680,20 @@ function initStack(id){
   function updateDetails(card){
     if(!detailsContainer) return;
     const title = card.dataset.title || 'Project';
+    const type = card.dataset.type || '';
     const loc = card.dataset.loc || '';
-    const desc = card.dataset.desc || '';
-    const area = card.dataset.area || '';
+    const scope = card.dataset.scope || '';
+    const status = card.dataset.status || '';
 
     detailsContainer.querySelector('h4').textContent = title;
-    detailsContainer.querySelector('.location').textContent = loc;
-    detailsContainer.querySelector('p').textContent = desc;
+    detailsContainer.querySelector('.location').textContent = `${type} · ${loc}`;
+    detailsContainer.querySelector('p').textContent = scope;
     
-    const metaDivs = detailsContainer.querySelectorAll('.stack-meta > div');
-    if(metaDivs[0]) metaDivs[0].lastChild.textContent = area;
+    const scopeEl = detailsContainer.querySelector('[id^="proj-scope"]');
+    const statusEl = detailsContainer.querySelector('[id^="proj-status"]');
+    
+    if(scopeEl) scopeEl.lastChild.textContent = scope.substring(0, 30) + (scope.length > 30 ? '...' : '');
+    if(statusEl) statusEl.lastChild.textContent = status;
   }
 
   function render(){
@@ -1455,6 +1703,8 @@ function initStack(id){
       if(offset===0){
         c.classList.add('act');
         updateDetails(c);
+        const countEl = document.getElementById('count-' + id.split('-')[1]);
+        if(countEl) countEl.textContent = `${i + 1} / ${cards.length}`;
       }
       else if(offset===1) c.classList.add('nxt');
       else if(offset===cards.length-1) c.classList.add('prv');
