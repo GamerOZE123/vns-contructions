@@ -204,6 +204,40 @@
         background: var(--copper-lt) !important;
       }
 
+      /* Hamburger */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 20;
+      }
+      .hamburger span {
+        width: 28px;
+        height: 2px;
+        background: var(--ink);
+        transition: all 0.3s;
+      }
+      .nav-r.mobile-active {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 100px 20px 40px;
+        gap: 30px;
+      }
+      .nav-r.mobile-active a {
+        height: auto;
+        padding: 12px 0;
+        font-size: 18px;
+        border: none;
+      }
+
       /* ═══════════════════════════════════════════
    HERO
 ═══════════════════════════════════════════ */
@@ -1527,13 +1561,42 @@
         }
         .stack-area {
           flex-direction: column;
-          gap: 32px;
+          gap: 24px;
+          padding-bottom: 48px;
+        }
+        .stack-wrap {
+          order: 1;
+          width: 100%;
+          max-width: 100%;
+          flex: 0 0 300px;
+          height: 300px;
+          justify-content: center;
+        }
+        .stack-nav {
+          order: 2;
+          position: relative;
+          bottom: auto;
+          right: auto;
+          justify-content: center;
+          padding: 0;
         }
         .stack-details {
+          order: 3;
           max-width: 100%;
+          width: 100%;
         }
       }
       @media (max-width: 640px) {
+        .hamburger {
+          display: flex;
+        }
+        .nav-r {
+          display: none;
+        }
+        .nav-r.mobile-active {
+          display: flex;
+        }
+
         .nav-r a:not(.cta) {
           display: none;
         }
@@ -1549,6 +1612,15 @@
         }
         .testi-row {
           grid-template-columns: 1fr;
+        }
+        .g-mosaic {
+          flex-direction: column;
+          gap: 12px;
+        }
+        .g-pic {
+          flex: 1 1 100% !important;
+          height: 240px;
+          min-width: 100%;
         }
         .hero-strip {
           flex-direction: column;
@@ -1763,12 +1835,18 @@
           <small>Erode · Est. 1999</small>
         </div>
       </a>
-      <div class="nav-r">
+      <div class="nav-r" id="nav-menu">
         <a href="#about">About</a>
         <a href="#proj">Projects</a>
         <a href="#leadership">Leadership</a>
         <a href="#careers">Careers</a>
         <a href="#contact" class="cta">Request Consultation</a>
+      </div>
+
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </nav>
 
@@ -2811,6 +2889,22 @@
         document.getElementById("prog").style.width =
           (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100 + "%";
         document.getElementById("nav").classList.toggle("s", d.scrollTop > 60);
+      });
+
+      /* Hamburger Menu */
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('nav-menu');
+
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('mobile-active');
+        hamburger.classList.toggle('active');
+      });
+
+      /* Close menu when clicking links */
+      document.querySelectorAll('#nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('mobile-active');
+        });
       });
 
       /* Scroll reveal */
